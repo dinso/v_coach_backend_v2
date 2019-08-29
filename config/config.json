@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "dinso",
+    "password": "rootroot0",
+    "database": "video_coaching",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "null",
+    "database": "video_coaching",
+    "host": "127.0.0.1"
+  },
+  "production": {
+    "username": "root",
+    "password": "rootroot0",
+    "database": "video_coaching",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "secret": "trance"
+}
