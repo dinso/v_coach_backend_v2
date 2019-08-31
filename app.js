@@ -5,8 +5,10 @@ const bodyParser = require("body-parser");
 
 const http = require("http");
 
-const port = process.env.PORT || 5500;
-const IP = process.env.IP || "127.0.0.1";
+const config = require('./utils/configEnv');
+
+const port = process.env.PORT || config.port;
+const IP = process.env.IP || config.host;
 
 const db = require("./models");
 const sequelize = require('./utils/db_conn');
@@ -20,9 +22,11 @@ var colors = require("colors");
 // app.use(morgan("dev"));
 
 // body parser to format data in urlencoded or json
-app.use(bodyParser.urlencoded({extended: false}));
-// app.use(bodyParser.json());
-app.use("/",indexRoutes);
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
+
 
 // app.use((req, res, next) => {
 //     // To any client
@@ -43,16 +47,23 @@ app.use("/",indexRoutes);
 //     next(); // For other routes to take over
 // });
 
+app.use("/", indexRoutes);
+
+// 404 page
+app.use((req, res, next) => {
+    res.status(400).json("Page Not Found");
+});
+
 // DB Connection
 
 sequelize.sync().then(result => {
     // console.log(result);
-    app.listen(port, IP, function() {
+    app.listen(port, IP, function () {
         console.log();
-
+        console.log(colors.yellow.bold("Connected on IP  = " + IP))
         console.log(colors.yellow.bold("Connected on Port  = " + port));
         console.log();
     });
 }).catch(err => {
-        console.log(err);
-    });
+    console.log(err);
+});

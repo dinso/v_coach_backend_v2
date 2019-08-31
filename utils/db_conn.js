@@ -1,5 +1,6 @@
 const mysql = require("mysql2");
-
+const config = require('./configEnv');
+// const configEnv = config.development;
 // const db = mysql.createConnection({
 //     connectionLimit: 10;
 //     host: "127.0.0.1",
@@ -18,8 +19,8 @@ const mysql = require("mysql2");
 
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('video_coaching', 'dinso', 'rootroot0',{
+const sequelize = new Sequelize(config.database, config.username, config.password,{
     dialect: 'mysql',
-    host: 'localhost'
+    host: config.host
 })
 module.exports = sequelize;
