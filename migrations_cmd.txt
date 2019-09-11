@@ -1,0 +1,5 @@
+// course category
+npx sequelize-cli model:generate --name CourseCategory --attributes name:string,description:string,containsVideo:tinyint,createdAt:date,updatedAt:date,deletedAt:date
+
+// access control
+npx sequelize-cli model:generate --name AccessControl --attributes label:string,description:string,createdAt:date,updatedAt:date,deletedAt:date

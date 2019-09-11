@@ -7,18 +7,38 @@ const User = sequelize.define('user', {
   id: {
     type: Sequelize.INTEGER,
     autoncrement: true,
-    allowNul: false,
+    allowNull: false,
     primaryKey: true
   },
-  fullName: {
+  firstName: {
     type: Sequelize.STRING,
-
+    allowNull: false,
+    validate: {
+      len: [4, 255]
+    }
   },
-  fatherName: {
+  middleName: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: [4, 255]
+    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: [4,255]
+    }
   },
   mobile: {
     type: Sequelize.INTEGER,
+    validate:{
+      len: [10,15],
+      isNumeric:{
+        msg:"Invalid Mobile Number"
+      }
+    }
   },
   address: {
     type: Sequelize.STRING,
@@ -51,6 +71,7 @@ const User = sequelize.define('user', {
   updatedAt: Sequelize.DATE,
   deletedAt: {
     type: Sequelize.DATE,
+    allowNull:true
   },
 }, {
   instanceMethods: {

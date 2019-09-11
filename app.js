@@ -30,20 +30,20 @@ app.use(bodyParser.json());
 
 // app.use((req, res, next) => {
 //     // To any client
-//     res.header("Access-Control-Allow-Origin", "*"); // * for all to access this api
+res.header("Access-Control-Allow-Origin", "*"); // * for all to access this api
 
 //     // Which type of headers;
-//     res.header(
-//         "Access-Control-Allow-Headers",
-//         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//     );
+res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+);
 
 //     // Which kind of Methods allowed
 //     // Browser will send options if its PUT, POST request
-//     if (req.method === "OPTIONS") {
-//         res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-//         return res.status(200).json({}); // json data load or payload
-//     }
+// if (req.method === "OPTIONS") {
+//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+//     return res.status(200).json({}); // json data load or payload
+// }
 //     next(); // For other routes to take over
 // });
 
