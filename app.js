@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-// app.use((req, res, next) => {
+app.use((req, res, next) => {
 //     // To any client
 res.header("Access-Control-Allow-Origin", "*"); // * for all to access this api
 
@@ -44,8 +44,8 @@ res.header(
 //     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
 //     return res.status(200).json({}); // json data load or payload
 // }
-//     next(); // For other routes to take over
-// });
+    next(); // For other routes to take over
+});
 
 app.use("/", indexRoutes);
 

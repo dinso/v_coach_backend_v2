@@ -1,14 +1,11 @@
 const express = require('express');
 const app = express();
 
-const user = require('/controllers/user');
+const User = require('../controllers/user');
 
 let route = express.Router();
 
-route.get("/getAllUsers", (req,res) => {
-  let users;
-  
-});
+route.get("/getAllUsers",User.getAllUsers);
 
 // login
 
@@ -21,4 +18,4 @@ route.get("/getAllUsers", (req,res) => {
 // categories
 route.get("/",(req,res)=> res.json({message: "index route of the app is working"}));
 
-module.exports = app;
+module.exports = route;

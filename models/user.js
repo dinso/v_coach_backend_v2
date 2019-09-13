@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 
-const sequelize = require('../util/db_conn');
+const sequelize = require('../utils/db_conn');
 
 const User = sequelize.define('user', {
   id: {
@@ -42,21 +42,33 @@ const User = sequelize.define('user', {
   },
   address: {
     type: Sequelize.STRING,
+    allowNull:false
   },
   dob: {
     type: Sequelize.DATE,
+    allowNull:false
   },
   email: {
     type: Sequelize.STRING,
+    allowNull:false,
+    validate: {
+      isEmail: true
+    },
+    set(email){
+      this.setDataValue("email",email.toString().toLowerCase());
+    }
   },
   password: {
     type: Sequelize.STRING,
+    allowNull:false
   },
   gender: {
     type: Sequelize.STRING,
+    allowNull:false
   },
   userTypeId: {
     type: Sequelize.STRING,
+    allowNull:false
   },
   qualificationId: {
     type: Sequelize.STRING,
@@ -67,13 +79,19 @@ const User = sequelize.define('user', {
   lastLoginTime: {
     type: Sequelize.DATE,
   },
-  createdAt: Sequelize.DATE,
-  updatedAt: Sequelize.DATE,
+  createdAt: {
+    type: Sequelize.DATE,
+    allowNull:false
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+  },
   deletedAt: {
     type: Sequelize.DATE,
-    allowNull:true
   },
 }, {
+  
+},{
   instanceMethods: {
     generateHash(password) {
       return bcrypt.hash(password, bcrypt.genSaltSync(8));
@@ -82,6 +100,11 @@ const User = sequelize.define('user', {
       return bcrypt.compare(password, this.password);
     }
   }
-});
+}
+);
+
+sequelize.addHook('beforeCreate','beforeUpdate', (user, options) => {
+  user.password = bcrypt.hash(user.password, 10);
+})
 
 module.exports = User;

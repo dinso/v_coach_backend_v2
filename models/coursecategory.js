@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const CourseCategory = sequelize.define('CourseCategory', {
+  const CourseCategory = sequelize.define('courseCategory', {
     name: {
       type: DataTypes.STRING,
       allwoNull:false

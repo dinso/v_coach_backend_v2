@@ -2,11 +2,12 @@ const express = require('express');
 const app = express();
 
 let router = express.Router();
-let User = require('./models/user');
+let User = require('../models/user');
 
 let attributesUser = [
-  "fullname",
-  "fathersFullname",
+  "firstName",
+  "middleName",
+  "lastName",
   "mobile",
   "address",
   "email",
@@ -16,8 +17,9 @@ let attributesUser = [
 ];
 let attributesUserID = [
   "id",
-  "fullname",
-  "fathersFullname",
+  "firstName",
+  "middleName",
+  "lastName",
   "mobile",
   "address",
   "email",
@@ -52,8 +54,18 @@ module.exports = {
     let dob = req.body.dob;
     let address = req.body.address;
     let gender = req.body.gender;
-  }
+  },
   //getAllUsers
-
+  getAllUsers(req, res){
+    return User.findAll({
+      // attributes: attributesUserID,
+      // include: [{ model: Qualification, attributes: ["label"] }]
+      // limit : 10
+    }).then(user => {
+      return res.status(200).json({
+        data: user
+      })
+    })
+  }
 
 };
