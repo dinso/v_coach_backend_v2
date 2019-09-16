@@ -5,10 +5,11 @@ const bodyParser = require("body-parser");
 
 const http = require("http");
 
-const config = require('./utils/configEnv');
+const config = require('./config/config');
+const configEnv = require('./utils/configEnv');
 
 const port = process.env.PORT || config.port;
-const IP = process.env.IP || config.host;
+const IP = process.env.IP || configEnv.host;
 
 const db = require("./models");
 const sequelize = require('./utils/db_conn');

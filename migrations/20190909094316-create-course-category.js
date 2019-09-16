@@ -33,6 +33,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      parentCourseCategoryID:{
+        type: Sequelize.INTEGER,
+        allowNull:true
       }
     });
   },

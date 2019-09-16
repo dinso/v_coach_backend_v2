@@ -58,13 +58,22 @@ module.exports = {
   //getAllUsers
   getAllUsers(req, res){
     return User.findAll({
-      // attributes: attributesUserID,
+      attributes: attributesUser
       // include: [{ model: Qualification, attributes: ["label"] }]
       // limit : 10
     }).then(user => {
+      console.log(user);
       return res.status(200).json({
         data: user
       })
+    })
+  },
+  getUser(req,res){
+    return User.findOne({
+      where : {
+        id: req.user.id
+      },
+
     })
   }
 

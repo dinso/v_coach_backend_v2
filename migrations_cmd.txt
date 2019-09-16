@@ -3,3 +3,6 @@ npx sequelize-cli model:generate --name CourseCategory --attributes name:string,
 
 // access control
 npx sequelize-cli model:generate --name AccessControl --attributes label:string,description:string,createdAt:date,updatedAt:date,deletedAt:date
+
+// user table
+npx sequelize-cli model:generate --name Users --attributes firstName:string,middleName:string,lastName:string,mobile:string,address:string,dob:dateonly,email:string,password:string,gender:string,userTypeId:integer,qualificationId:integer,organizationId:integer,lastLoginTime:date,createdAt:date,updatedAt:date,deletedAt:date

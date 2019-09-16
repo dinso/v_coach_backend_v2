@@ -1,38 +1,38 @@
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 
-const sequelize = require('../utils/db_conn');
+// const sequelize = require('../utils/db_conn');
 
 const User = sequelize.define('user', {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoncrement: true,
     allowNull: false,
     primaryKey: true
   },
   firstName: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       len: [4, 255]
     }
   },
   middleName: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       len: [4, 255]
     }
   },
   lastName: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       len: [4,255]
     }
   },
   mobile: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.STRING,
     validate:{
       len: [10,15],
       isNumeric:{
@@ -41,15 +41,15 @@ const User = sequelize.define('user', {
     }
   },
   address: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull:false
   },
   dob: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
     allowNull:false
   },
   email: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull:false,
     validate: {
       isEmail: true
@@ -59,35 +59,35 @@ const User = sequelize.define('user', {
     }
   },
   password: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull:false
   },
   gender: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull:false
   },
   userTypeId: {
-    type: Sequelize.STRING,
+    type: DataTypes.INTEGER,
     allowNull:false
   },
   qualificationId: {
-    type: Sequelize.STRING,
+    type: DataTypes.INTEGER,
   },
   organizationId: {
-    type: Sequelize.STRING,
+    type: DataTypes.INTEGER,
   },
   lastLoginTime: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
   },
   createdAt: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
     allowNull:false
   },
   updatedAt: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
   },
   deletedAt: {
-    type: Sequelize.DATE,
+    type: DataTypes.DATE,
   },
 }, {
   

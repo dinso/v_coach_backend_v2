@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const CourseCategory = sequelize.define('courseCategory', {
+  const CourseCategory = sequelize.define('CourseCategory', {
     name: {
       type: DataTypes.STRING,
       allwoNull:false
@@ -12,13 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     containsVideo: DataTypes.BOOLEAN,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
-    deletedAt: DataTypes.DATE
+    deletedAt: DataTypes.DATE,
+    parentCourseCategoryID: {
+      type: DataTypes.INTEGER,
+      allowNull:true
+    },
   }, {});
   CourseCategory.associate = function(models) {
     // associations can be defined here
     CourseCategory.belongsTo(models.CourseCategory, {
       foreignKey: { 
-        name: "parentCourseCategoryID ",
+        name: "parentCourseCategoryID",
         allowNull:true
       }
     });
