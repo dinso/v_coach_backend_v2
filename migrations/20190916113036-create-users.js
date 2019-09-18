@@ -66,16 +66,26 @@ module.exports = {
       }
     }).then(()=>{
       return queryInterface.addColumn(
-        'UserType',
+        'Users',
         'userTypeId',
         {
-          type: Sequelize.INTEGER
-          
+          type: Sequelize.INTEGER,
+          references: {
+            model: 'UserType',
+            key: 'id'
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'SET NULL'
         },
       );
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Users').then(() => {
+      return queryInterface.removeColumn(
+        'Users',
+        'userTypeId'
+      );
+    });
   }
 };

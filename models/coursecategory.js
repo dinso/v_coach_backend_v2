@@ -23,15 +23,21 @@ module.exports = (sequelize, DataTypes) => {
     CourseCategory.belongsTo(models.CourseCategory, {
       foreignKey: { 
         name: "parentCourseCategoryID",
-        allowNull:true
+        allowNull:true      //sub category rows will not have video so they will be null
       }
     });
-    // CourseCategory.belongsTo(models.AccessControl, {
-    //   foreignKey: {
-    //     name: "accessControlID",
-    //     allowNull: false
-    //   }
-    // });
+    CourseCategory.belongsTo(models.Organization, {
+      foreignKey: {
+        name: "organizationId",
+        allowNull: false
+      }
+    });
+    CourseCategory.belongsTo(models.Video, {
+      foreignKey: {
+        name: "videoId",
+        allowNull: true     //sub category rows will not have video so they will be null
+      }
+    });
   };
   return CourseCategory;
 };

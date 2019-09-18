@@ -83,6 +83,22 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Users.associate = function(models) {
     // associations can be defined here
+    Users.belongsTo(models.UserType, {
+      foreignKey: {
+        name: "userTypeId",
+        allowNull: false
+      }
+    });
+    Users.belongsTo(models.Qualification, {
+      foreignKey: {
+        name: "qualificationId",
+        allowNull: false
+      }
+    });
+    Users.belongsTo(models.Organization, {
+      foreignKey: "organizationId",
+      allowNull: false
+    });
   };
   return Users;
 };
