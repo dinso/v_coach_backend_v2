@@ -3,15 +3,12 @@ const app = express();
 // const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
-const http = require("http");
-
 const config = require('./config/config');
-const configEnv = require('./utils/configEnv');
+const dotenv = require('dotenv');
 
-const port = process.env.PORT || config.port;
-const IP = process.env.IP || configEnv.host;
+const port = process.env.PORT || "5600";
+const IP = process.env.IP || "127.0.0.1";
 
-const db = require("./models");
 const sequelize = require('./utils/db_conn');
 
 const indexRoutes = require("./routes/index");
@@ -19,7 +16,7 @@ const userRoutes = require('./routes/user');
 
 var colors = require("colors");
 
-// morgan for requrest log in console
+// morgan for request log in console
 // app.use(morgan("dev"));
 
 // body parser to format data in urlencoded or json
@@ -57,7 +54,7 @@ app.use((req, res, next) => {
 
 // DB Connection
 
-sequelize.sync().then(result => {
+sequelize.sync({force:false}).then(result => {
     // console.log(result);
     app.listen(port, IP, function () {
         console.log();

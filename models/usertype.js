@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const UserType = sequelize.define('UserType', {
-    label: DataTypes.STRING,
+    label: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     description: DataTypes.STRING
   }, {});
   UserType.associate = function(models) {

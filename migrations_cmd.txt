@@ -20,10 +20,20 @@ npx sequelize-cli model:generate --name Organization --attributes label:string,d
 npx sequelize-cli model:generate --name Payment --attributes transactionNumber:string,createdAt:date,updatedAt:date,deletedAt:date
 
 //video table
-npx sequelize-cli model:generate --name Video --attributes label:string,description:string
+npx sequelize-cli model:generate --name Video --attributes label:string,description:string,url:string
 
 //mcq table
 npx sequelize-cli model:generate --name MCQ --attributes Q1:string,Q2:string,Q3:string,A1:string,A2:string,A3:string,A1O1:string,A1O2:string,A2O1:string,A2O2:string,A3O1:string,A3O2:string
 
 //subscription table
-npx sequelize-cli model:generate --name Subscription --attributes expiryTime:string,isCompleted:string,createdAt:date,updatedAt:date,deletedAt:date
+npx sequelize-cli model:generate --name Subscription --attributes expiryTime:integer,isCompleted:boolean,createdAt:date,updatedAt:date,deletedAt:date
+
+//order in which db to create
+1. mcq
+2. usertype
+3. Organization
+4. qualification
+5. video 
+6. User 
+7. CourseCategory
+8. Payment

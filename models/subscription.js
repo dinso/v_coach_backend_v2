@@ -1,17 +1,29 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Subscription = sequelize.define('Subscription', {
-    expiryTime: DataTypes.STRING,
-    isCompleted: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    expiryTime: {
+      type: DataTypes.INTEGER,
+      allowNull:false
+    },
+    isCompleted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    } ,
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
     deletedAt: DataTypes.DATE
   }, {});
   Subscription.associate = function(models) {
     // associations can be defined here
-    Subscription.belongsTo(models.Users, {
+    Subscription.belongsTo(models.User, {
       foreignKey: {
-        name: userId,
+        name: "userId",
         allowNull:false
       }
     });

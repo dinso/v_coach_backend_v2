@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Qualification = sequelize.define('Qualification', {
-    label: DataTypes.STRING,
+    label: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     description: DataTypes.STRING
   }, {});
   Qualification.associate = function(models) {

@@ -3,20 +3,25 @@ module.exports = (sequelize, DataTypes) => {
   const CourseCategory = sequelize.define('CourseCategory', {
     name: {
       type: DataTypes.STRING,
-      allwoNull:false
+      allowNull:false
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: true
+    },
+    containsVideo: {
+      type: DataTypes.BOOLEAN,
       allowNull: false
     },
-    containsVideo: DataTypes.BOOLEAN,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
-    deletedAt: DataTypes.DATE,
-    parentCourseCategoryID: {
-      type: DataTypes.INTEGER,
-      allowNull:true
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
     },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    deletedAt: DataTypes.DATE,
   }, {});
   CourseCategory.associate = function(models) {
     // associations can be defined here

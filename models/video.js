@@ -1,12 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Video = sequelize.define('Video', {
-    label: DataTypes.STRING,
-    description: DataTypes.STRING
+    label: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {});
   Video.associate = function(models) {
     // associations can be defined here
-    Video.BelongsTo(models.MCQ, {
+    Video.BelongsTo(models.mcq, {
       foreignKey: {
         name: "mcqId",
         allowNull: true

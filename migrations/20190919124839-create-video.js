@@ -9,10 +9,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       label: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       description: {
         type: Sequelize.STRING
+      },
+      url:{
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      mcqId:{
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'MCQs',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
