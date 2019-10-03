@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Subscription.associate = function(models) {
     // associations can be defined here
-    Subscription.belongsTo(models.User, {
+    Subscription.belongsTo(models.Users, {
       foreignKey: {
         name: "userId",
         allowNull:false

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Payment.associate = function(models) {
     // associations can be defined here
-    Payment.belongsTo(models.User, {
+    Payment.belongsTo(models.Users, {
       foreignKey: {
         name: "userId",
         allowNull: false

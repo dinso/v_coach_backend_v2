@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Video.associate = function(models) {
     // associations can be defined here
-    Video.BelongsTo(models.mcq, {
+    Video.belongsTo(models.MCQ, {
       foreignKey: {
         name: "mcqId",
         allowNull: true

@@ -1,11 +1,11 @@
 const express = require('express');
-const app = express();
+const route = express.Router();
 
-const User = require('../controllers/user');
+route.use('/api', require('./user'));
 
-let route = express.Router();
+// route.use('/api/admin',require('./admin'));
 
-route.get("/getAllUsers",User.getAllUsers);
+
 
 // login
 

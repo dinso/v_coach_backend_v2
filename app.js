@@ -12,7 +12,6 @@ const IP = process.env.IP || "127.0.0.1";
 const sequelize = require('./utils/db_conn');
 
 const indexRoutes = require("./routes/index");
-const userRoutes = require('./routes/user');
 
 var colors = require("colors");
 
@@ -45,7 +44,7 @@ res.header(
     next(); // For other routes to take over
 });
 
-app.use("/", indexRoutes);
+app.use(indexRoutes);   //this function is executed every time the  app receives a request
 
 // 404 page
 app.use((req, res, next) => {
