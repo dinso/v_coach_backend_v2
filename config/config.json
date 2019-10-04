@@ -21,6 +21,6 @@
     "dialect": "mysql"
   },
   "port": 5500,
-  "secret": "This is a sescret You wiLL_Never-KnoW"
+  "secret": "This_is_aSecret You wiLL_Never-KnoW"
 }
 
