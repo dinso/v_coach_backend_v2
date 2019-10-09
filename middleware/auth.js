@@ -5,7 +5,7 @@ const getTokenFromHeaders = req => {
   const {
     headers: { authorization }
   } = req;
-  console.log(`authorizations is : ${authorization}`);
+  console.log(`authorizations is :${authorization}`);
   if (authorization && authorization.split(" ")[0] === "Bearer") {
     return authorization.split(" ")[1];
   }
@@ -17,9 +17,8 @@ const verify = function(req, res, next) {
 
   if (token) {
     req.user = jwtConfig.verify(token);
-    console.log(req.user);
     let user = req.user;
-
+    // console.log(`user is :${JSON.stringify(req.user)}`);
     if (!user || !user.id || user.id <= 0) {
       res.status(401).send({ message: "Not authorized.", status: false });
       return;

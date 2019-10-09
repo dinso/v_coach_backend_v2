@@ -17,8 +17,8 @@ verify: token => {
   try{
     return jwt.verify(token,config.secret,verifyOptions);
   }catch(err){
-    console.log(err);
-    return res.status(401);
+    // console.log(`error starts with :${err}`);   
+    return false;
   }
 }
 };

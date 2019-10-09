@@ -45,6 +45,17 @@ exports.getAllUsers = (req, res, next) => {
   });
 }
 
+function authenticate(password, hash){
+  return bcrypt.compareSync(password, hash, (err, same)=>{
+    // console.log(`same is ${same}`);
+    if(same){
+      return same;
+    }else{
+      return err;
+    }
+  });
+}
+
 // Web Panel Login
 exports.loginAdmin = (req, res, next) => {
   // console.log(req.body);
@@ -53,18 +64,28 @@ exports.loginAdmin = (req, res, next) => {
   }
   User.findOne({
     where: {
-      email: req.body.email,
+      email: req.body.email
     }
   }).then(user => {
     if (user && (user.userTypeId == userTypeAdmin || user.userTypeId == userTypeOrg)) {
-      // console.log(`User is : ${JSON.stringify(user)}`);
-      let token = jwtConfig.sign({
-        id: req.body.id
-      });
-      return res.status(200).json({
-        message: "User Present",
-        token: token
-      });
+      let token;    
+      let match = authenticate(req.body.password, user.password);
+      // console.log(`match is ${match}`);
+      if(match){
+        token = jwtConfig.sign({
+          id: user.id
+        });
+        return res.status(200).json({
+          message: "Authentication success",
+          token: token,
+          status: true
+        });
+      }else{
+        return res.status(401).json({
+          message: "Authentication failure",
+          status: false
+        })
+      }
     } else if (user.userTypeId != userTypeAdmin || user.userTypeId != userTypeOrg) {
       sendError(res, "Unauthorized Access");
     } else {
@@ -77,9 +98,10 @@ exports.loginAdmin = (req, res, next) => {
 
 // Android Login
 exports.login = (req, res, next) => {
-  
+  console.log("Login works");
 }
 
+// Android Signup
 exports.signUp = (req, res, next) => {
   let signupData = {
     'firstName': req.body.firstName,
@@ -106,12 +128,15 @@ exports.signUp = (req, res, next) => {
       status: false
     });
   } else {
-      User.create(signupData).then(res => {
-        return res.status(200).json({
-          message: "User successfully signed up",
-          status: true
-        });
-      }).catch(err => sendError(res, err, ));
+    User.create(signupData).then(res => {
+      return res.status(200).json({
+        message: "User successfully signed up",
+        status: true
+      });
+    }).then(() => {
+      // redirect to login page
+      res.redirect('/login');      
+    }).catch(err => sendError(res, err, ));
 
   }
 

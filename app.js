@@ -3,9 +3,6 @@ const app = express();
 // const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
-const config = require('./config/config');
-const dotenv = require('dotenv');
-
 const port = process.env.PORT || "5600";
 const IP = process.env.IP || "127.0.0.1";
 
@@ -37,10 +34,10 @@ res.header(
 
 //     // Which kind of Methods allowed
 //     // Browser will send options if its PUT, POST request
-// if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-//     return res.status(200).json({}); // json data load or payload
-// }
+if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({}); // json data load or payload
+}
     next(); // For other routes to take over
 });
 
