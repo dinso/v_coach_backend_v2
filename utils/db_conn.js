@@ -1,7 +1,7 @@
-const mysql = require("mysql2");
+import mysql from "mysql2";
 const ENV = process.env.NODE_ENV || 'development';
-let config = require('../config/config');
-config = config.development;
+import config, { development, database, username, password, host as _host } from '../config/config';
+config = development;
 // const db = mysql.createConnection({
 //     connectionLimit: 10;
 //     host: "127.0.0.1",
@@ -18,11 +18,11 @@ config = config.development;
 //     }
 // });
 
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 console.log(ENV);
 console.log(config);
-const sequelize = new Sequelize(config.database, config.username, config.password,{
+const sequelize = new Sequelize(database, username, password, {
     dialect: 'mysql',
-    host: config.host
+    host: _host
 })
-module.exports = sequelize;
+export default sequelize;

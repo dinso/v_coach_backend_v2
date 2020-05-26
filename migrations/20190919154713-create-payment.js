@@ -1,44 +1,42 @@
 'use strict';
-module.exports = {
-  up: (queryInterface, Sequelize) => {
+export function up(queryInterface, Sequelize) {
     return queryInterface.createTable('Payments', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      transactionNumber: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
-      },
-      courseId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'CourseCategories',
-          key: 'id'
-        }
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER
+        },
+        transactionNumber: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        userId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
+        },
+        courseId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'CourseCategories',
+                key: 'id'
+            }
+        },
+        createdAt: {
+            allowNull: false,
+            type: Sequelize.DATE
+        },
+        updatedAt: {
+            allowNull: false,
+            type: Sequelize.DATE
+        },
     });
-  },
-  down: (queryInterface, Sequelize) => {
+}
+export function down(queryInterface, Sequelize) {
     return queryInterface.dropTable('Payments');
-  }
-};
+}

@@ -1,43 +1,41 @@
 'use strict';
-module.exports = {
-  up: (queryInterface, Sequelize) => {
+export function up(queryInterface, Sequelize) {
     return queryInterface.createTable('Videos', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      label: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      url:{
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      mcqId:{
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        references: {
-          model: 'MCQs',
-          key: 'id'
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER
+        },
+        label: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        description: {
+            type: Sequelize.STRING
+        },
+        url: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        mcqId: {
+            type: Sequelize.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'MCQs',
+                key: 'id'
+            }
+        },
+        createdAt: {
+            allowNull: false,
+            type: Sequelize.DATE
+        },
+        updatedAt: {
+            allowNull: false,
+            type: Sequelize.DATE
         }
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
-  },
-  down: (queryInterface, Sequelize) => {
+}
+export function down(queryInterface, Sequelize) {
     return queryInterface.dropTable('Videos');
-  }
-};
+}
